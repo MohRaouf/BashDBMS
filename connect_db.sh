@@ -1,4 +1,4 @@
 #! /bin/bash
 read -p "Enter Database name: " name
-cd DBs/$name 2>> error.log && echo " $name Database Selected Successfully" && touch name.tb  || echo "Database $name Not Exist" 
 
+cd DBMS/$name 2>> error.log && echo "Database <$name> Selected Successfully" && . ../../db_menu.sh $name || echo "Database $name Not Exist"

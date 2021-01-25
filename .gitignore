@@ -1,0 +1,4 @@
+*.log
+DBMS
+.vscode
+test.sh
