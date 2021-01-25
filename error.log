@@ -23,3 +23,4 @@ mkdir: cannot create directory ‘DBMS/test1’: No such file or directory
 bash: cd: /home/aasaad/DBMS/ld: No such file or directory
 bash: cd: /home/aasaad/DBMS/rlrfm: No such file or directory
 bash: cd: /home/aasaad/DBMS/test: No such file or directory
+bash: cd: DBs/Amaal: No such file or directory
