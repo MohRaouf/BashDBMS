@@ -17,10 +17,10 @@ echo  -n "$(tput setaf 3)Choice : "
 read choice
 case $choice in
     1)  . ./create_db.sh ;;
-    2) ls DBMS ;;
-    3) echo "Amaal Working on it";;
-    4) echo "Amaal Working on it";;
-    5) Exit;;
+    2) ls ~/DBMS ;;
+    3) . ./connect_db.sh ;;
+    4) . ./drop_db.sh ;;
+    5) exit;;
     *) echo -e "\n______ Invalid Choice ______\n";;
 esac
 done
