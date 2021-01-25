@@ -1,8 +1,8 @@
 #! /bin/bash 
 read -p  "Enter Database Name : " name
-if [ -d DBs/$name ]
+if [ -d DBMS/$name ]
 then
-        echo "Are you sure You Want To Delete $name ?"
+        echo "Are you sure You Want To Delete $name?"
         read choice
         case $choice in
                 [yY]*)
