@@ -1,4 +1,4 @@
-#! /bin/bash 
+#!/bin/bash 
 read -p  "Enter Database Name : " name
 if [ -d DBMS/$name ]
 then
