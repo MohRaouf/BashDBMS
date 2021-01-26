@@ -36,9 +36,9 @@ do
         1)  . ../../create_table.sh ;;
         2) ls ;;
 	3) . ../../drop_tb.sh;;
-        4) exit;;
+        4) . ../../insert_into.sh;;
         5) exit;;
-        6) exit;;
+        6) . ../../Delete_from.sh;;
         7) exit;;
         8) exit;;
         *) echo -e "\n______ Invalid Choice ______\n";;
