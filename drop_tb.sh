@@ -4,7 +4,7 @@ if [ -f $name ]
 then 
 	read -p "Are You Sure You Want To Delete $name Table ? (Y/N) : " choice
 	case $choice in
-		[yY]*) rm $name; echo "Table Deleted Successfully" ;;
+		[yY]*) rm $name .$name; echo "Table Deleted Successfully" ;;
 		[nN]*) echo "Canceled";;
 		*) echo "Invalid Option";;
 	esac
