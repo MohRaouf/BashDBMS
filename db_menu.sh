@@ -45,7 +45,7 @@ do
     case $selection in
         1)  . ../../create_table.sh ;;
         2) ls ;;
-	      3) . ../../drop_tb.sh;;
+	    3) . ../../drop_tb.sh;;
         4) . ../../insert_into.sh;;
         5) exit;;
         6) . ../../Delete_from.sh;;
