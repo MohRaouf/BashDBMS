@@ -19,14 +19,10 @@ then
 		 			echo -n $value"|" >> $name;
 		 		else	
 		 			echo  $value >> $name;
-					echo "Data inserted Successfully"
-		 		fi
-				flag=1;
-			else
-				echo "Invalid input"
 		 	fi
+			flag=1;
+			else echo " Invalid Input Data Type";
+		       	fi
 	 	done
 	done
-else
-	echo "$name Not Exist";
-fi
+else exit 1; fi
