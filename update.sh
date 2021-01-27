@@ -6,7 +6,7 @@ read -p "Table Name : " table_name
 #select the column to search for value
 read -p "Select With Column Name : " column_name
 found=$(awk 'BEGIN{FS="|"; found=0} {if (NR==1){for(i=1;i<=NF;i++){if($i=="'$column_name'")found=1}}} END{print found}' "$table_name")
-if ((found==0)); then echo "failed Col Name"; exit 2; fi;
+if ((found==0)); then exit 2; fi;
 
 #read the value to select its column
 read -p "Select By Value : " selected_record
@@ -24,6 +24,7 @@ read -p "New Value : " new_value
 case $new_value in
         [a-zA-Z]* ) if (( col_data_type!="txt")); then exit 4; fi ;;
         [0-9]* )    if (( col_data_type!="int")); then exit 4; fi ;;
+        * ) echo "Invalid Entry"
 esac
 
 #update the selected record with the new value
