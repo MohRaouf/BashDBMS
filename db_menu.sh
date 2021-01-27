@@ -14,10 +14,11 @@ function db_connected {
 function update_with_check {
     (../../update.sh )
     result=$?
-    if ((result==1)); then echo "Invalid Table Name"; 
-    elif ((result==2)); then echo "Invalid Column Name";
-    elif ((result==3)); then echo "No Value Found"; 
-    elif ((result==4)); then echo "Invalid Value Type"; 
+    if ((result==1)); then echo "Error : Invalid Table Name"; 
+    elif ((result==2)); then echo "Error : Invalid Column Name";
+    elif ((result==3)); then echo "Error : No Value Found"; 
+    elif ((result==4)); then echo "Error : Invalid Value Type"; 
+    elif ((result==5)); then echo "Error : PK Value Exists"; 
     else echo "Updated Successfully"; fi
 }
 
