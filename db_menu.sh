@@ -21,6 +21,21 @@ function update_with_check {
     elif ((result==5)); then echo "Error : PK Value Exists"; 
     else echo "Updated Successfully"; fi
 }
+function delete_with_check {
+    (../../Delete_from.sh )
+    result=$?
+    if ((result==1)); then  echo " Value Not Exist ";
+    elif ((result==2)); then echo " Column Attribute Not Exist";
+    elif ((result==3)); then echo "Table Not Exist";
+    else echo "Row Deleted Successfully"; fi
+}
+function insert_with_check {
+    (../../insert_into.sh )
+    result=$?
+    if ((result==1)); then  echo " Table Not Exist ";
+#    elif ((result==2)); then echo " Invalid Input Data Type";
+    else echo "Row Inserted Successfully"; fi
+}
 
 clear
 db_name=$1;
@@ -45,10 +60,10 @@ do
     case $selection in
         1)  . ../../create_table.sh ;;
         2) ls ;;
-	    3) . ../../drop_tb.sh;;
-        4) . ../../insert_into.sh;;
+	      3) . ../../drop_tb.sh;;
+        4) insert_with_check;;
         5) exit;;
-        6) . ../../Delete_from.sh;;
+        6) delete_with_check;;
         7) update_with_check ;;
         8) exit;;
         *) echo -e "\n______ Invalid Choice ______\n";;

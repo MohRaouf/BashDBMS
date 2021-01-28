@@ -43,3 +43,4 @@ fi
 
 #update the selected record with the new value
 awk -v new_value="$new_value" -i inplace -F'|' '{OFS=FS}{if($"'$record_field'"=="'$selected_record'"){$"'$field_no'"=new_value } print}' "$table_name" 2>../../error.log
+
