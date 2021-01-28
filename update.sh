@@ -10,6 +10,13 @@ sql_line=$(echo "$sql_line" | sed -e 's/UPDATE//g' -e 's/SET//g' -e 's/WHERE//g'
 table_name=$(echo "$sql_line" | awk -F';' '{gsub(/^[ \t]+|[ \t]+$/, "",$1);print $1}')
 [ -f "$table_name" ] || exit 1
 
+#get the column in the SET and check its existance
+update_col_name=$(echo "$sql_line" | awk -F';' '{print $2}' | awk -F'=' '{gsub(/^[ \t]+|[ \t]+$/, "",$1);print $1}')
+field_no=$(awk -F'|' 'BEGIN{found=0} {if (NR==1){for(i=1;i<=NF;i++){if($i=="'$update_col_name'")found=i}}} END{print found}' "$table_name")
+col_data_type=$(awk -F'|' '{if ($1=="'$update_col_name'"){print $2}}' ".$table_name")
+is_pk=$(awk -F'|' '{if ($1=="'$update_col_name'"){print $3}}' ".$table_name")
+if ((field_no == 0)); then exit 2; fi
+
 #get the column in the WHERE condition and check its existance
 column_name=$(echo "$sql_line" | awk -F';' '{print $3}' | awk -F'=' '{gsub(/^[ \t]+|[ \t]+$/, "",$1);print $1}')
 found=$(awk -F'|' 'BEGIN{found=0} {if(NR==1){for(i=1;i<=NF;i++){if($i=="'$column_name'")found=1}}} END{print found}' "$table_name")
@@ -19,13 +26,6 @@ if ((found == 0)); then exit 2; fi
 selected_record=$(echo "$sql_line" | awk -F';' '{print $3}' | awk -F'=' '{gsub(/^[ \t]+|[ \t]+$/, "",$2);print $2}')
 record_field=$(awk -F'|' 'BEGIN{found=0} {if(NR!=1){for(i=1;i<=NF;i++){if($i=="'$selected_record'")found=i}}} END{print found}' "$table_name")
 if ((record_field == 0)); then exit 3; fi
-
-#get the column in the SET
-update_col_name=$(echo "$sql_line" | awk -F';' '{print $2}' | awk -F'=' '{gsub(/^[ \t]+|[ \t]+$/, "",$1);print $1}')
-field_no=$(awk -F'|' 'BEGIN{found=0} {if (NR==1){for(i=1;i<=NF;i++){if($i=="'$update_col_name'")found=i}}} END{print found}' "$table_name")
-col_data_type=$(awk -F'|' '{if ($1=="'$update_col_name'"){print $2}}' ".$table_name")
-is_pk=$(awk -F'|' '{if ($1=="'$update_col_name'"){print $3}}' ".$table_name")
-if ((field_no == 0)); then exit 2; fi
 
 #validate the new value with the column type
 new_value=$(echo "$sql_line" | awk -F';' '{print $2}' | awk -F'=' '{gsub(/^[ \t]+|[ \t]+$/, "",$2);print $2}')
@@ -43,4 +43,3 @@ fi
 
 #update the selected record with the new value
 awk -v new_value="$new_value" -i inplace -F'|' '{OFS=FS}{if($"'$record_field'"=="'$selected_record'"){$"'$field_no'"=new_value } print}' "$table_name" 2>../../error.log
-
