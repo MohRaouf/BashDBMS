@@ -18,7 +18,7 @@ read choice
 case $choice in
     1)  . ./create_db.sh ;;
     2) ls DBMS ;;
-    3) . ./connect_db.sh ;;
+    3)  ./connect_db.sh ;;
     4) . ./drop_db.sh ;;
     5) exit;;
     *) echo -e "\n______ Invalid Choice ______\n";;
