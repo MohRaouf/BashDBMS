@@ -9,16 +9,6 @@ function db_connected() {
     echo " Connected>$(tput setaf 2) |"
 }
 
-# Form Error Message upon the Exit Code
-function select_with_check() {
-    if (($# == 3)); then
-        (../../"$1" "$2" "$3")
-    else
-        (../../"$1" "$2" "$3" "$4" "$5" "$6")
-    fi
-    $? || echo "Error : Check the logs"
-}
-
 function sql_parse() {
     #remove SQL specific words
     sql_line=$(echo "$entry" | sed -e 's/SELECT//g' -e 's/FROM//g' -e 's/WHERE//g' | sed -e 's/select//g' -e 's/from//g' -e 's/where//g')
