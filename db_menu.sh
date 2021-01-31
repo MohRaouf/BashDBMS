@@ -27,22 +27,18 @@ function update_with_check() {
 }
 # Form Error Message upon the Exit Code
 function select_with_check() {
-    (../../select.sh $1)
+    (../../select.sh "$1")
     result=$?
     if ((result == 1)); then
         echo "Error : Check the logs"
     elif ((result == 2)); then exit; fi
 }
 function delete_with_check() {
-    (../../Delete_from.sh)
+    (../../Delete_from.sh "$1")
     result=$?
     if ((result == 1)); then
-        echo " Value Not Exist "
-    elif ((result == 2)); then
-        echo " Column Attribute Not Exist"
-    elif ((result == 3)); then
-        echo "Table Not Exist"
-    else echo "Row Deleted Successfully"; fi
+        echo "Error : Check the logs"
+    elif ((result == 2)); then exit; fi
 }
 function insert_with_check() {
     (../../insert_into.sh)
@@ -78,7 +74,7 @@ while true; do
     3) . ../../drop_tb.sh ;;
     4) insert_with_check ;;
     5) select_with_check "$db_name" ;;
-    6) delete_with_check ;;
+    6) delete_with_check "$db_name" ;;
     7) update_with_check ;;
     8) exit ;;
     *) echo -e "\n______ Invalid Choice ______\n" ;;

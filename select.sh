@@ -9,7 +9,7 @@ function db_connected() {
     echo " Connected>$(tput setaf 2) |"
 }
 
-function sql_parse() {
+function select_with_check() {
     #remove SQL specific words
     sql_line=$(echo "$entry" | sed -e 's/SELECT//g' -e 's/FROM//g' -e 's/WHERE//g' | sed -e 's/select//g' -e 's/from//g' -e 's/where//g')
 
@@ -31,7 +31,7 @@ function sql_parse() {
         return
     else
         #get and check the where operator
-        where_operator=$(echo "$sql_line" | awk -F';' '{print $3}' | sed -e 's/[a-zA-Z]*//g' -e 's/[0-9]//g' -e's/ //g')
+        where_operator=$(echo "$sql_line" | awk -F';' '{print $3}' | sed -e 's/[a-zA-Z]*//g' -e 's/[0-9]*//g' -e's/ //g')
         if ! [[ "$where_operator" =~ ^(==|>|<|>=|<=)$ ]] ; then echo "Error : Invalid Where Operator"; return; fi
 
         #get the column in the WHERE condition and check its existance
@@ -72,6 +72,6 @@ while true; do
     case $entry in
     1) exit ;;
     2) exit 2 ;;
-    *) sql_parse ;;
+    *) select_with_check ;;
     esac
 done
