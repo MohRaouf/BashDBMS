@@ -41,12 +41,11 @@ function delete_with_check() {
     elif ((result == 2)); then exit; fi
 }
 function insert_with_check() {
-    (../../insert_into.sh)
+    (../../insert_into.sh "$1")
     result=$?
     if ((result == 1)); then
-        echo " Table Not Exist "
-        #    elif ((result==2)); then echo " Invalid Input Data Type";
-    else echo "Row Inserted Successfully"; fi
+        echo "Error : Check the logs"
+    elif ((result == 2)); then exit; fi
 }
 
 clear
@@ -72,7 +71,7 @@ while true; do
     1) . ../../create_table.sh ;;
     2) ls ;;
     3) . ../../drop_tb.sh ;;
-    4) insert_with_check ;;
+    4) insert_with_check "$db_name" ;;
     5) select_with_check "$db_name" ;;
     6) delete_with_check "$db_name" ;;
     7) update_with_check ;;

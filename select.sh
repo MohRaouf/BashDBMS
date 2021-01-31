@@ -55,7 +55,7 @@ db_name=$1
 while true; do
     tput setaf 2 #change font color to Green
     echo "+---------------------------------------------------------------------+"
-    db_connected $db_name
+    db_connected "$db_name"
     echo "+---------------------------------------------------------------------+"
     echo "| e.g. SELECT *; FROM table;                                          |"
     echo "|      SELECT column; FROM table;                                     |"

@@ -21,7 +21,6 @@ function delete_with_check {
 
 	if ((fields_no == 2)); then
 		awk -i inplace -F'|' '{if(NR==1){print $0}}' "$table_name" 
-		echo "fields No = 2"
 		return
     else
         #get and check the where operator
@@ -38,8 +37,8 @@ function delete_with_check {
         where_value_exist=$(awk -F'|' 'BEGIN{found=0} {if(NR!=1){if($"'$where_column_field'"=="'$where_value'")found=1}} END{print found}' "$table_name")
         if ((where_value_exist == 0)); then echo "Warning : The Where Value does not exist in the Table "; fi
 
-         awk -v were_value="$where_value" -i inplace -F'|' '{if(!($'$where_column_field'  '$where_operator' were_value)){print $0}}' "$table_name" 
-        # echo "select $select_column from $table_name where $where_column $where_operator $where_value"
+		# Delete the records
+        awk -v were_value="$where_value" -i inplace -F'|' '{if(!($'$where_column_field'  '$where_operator' were_value)){print $0}}' "$table_name" 
     fi
 }
 
@@ -48,10 +47,10 @@ db_name=$1
 while true; do
     tput setaf 2 #change font color to Green
     echo "+---------------------------------------------------------------------+"
-    db_connected $db_name
+    db_connected "$db_name"
     echo "+---------------------------------------------------------------------+"
     echo "| e.g. DELETE FROM table; WHERE column[==,<,>,>=,<=]value;            |"
-	echo "| e.g. DELETE FROM table; 								            |"
+	echo "|      DELETE FROM table;                                             |"
     echo "+---------------------------------------------------------------------+"
     echo "| 1 -  Back to DB Menu                                                |"
     echo "| 2 -  Back to Main Menu                                              |"
