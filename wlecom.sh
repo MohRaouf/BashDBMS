@@ -4,8 +4,8 @@ Welcom=$(zenity --list --width=1000 --height=500 --radiolist --ok-label="Go" --c
      --text 'Select option For Using DB Engine:' \
      --column='options' \
      --column="Database Engine" \
-     "_" "By Using GUI" \
-     "_" "By Using SQL Statement"
+     "TRUE" "By Using GUI" \
+     "FALSE" "By Using SQL Statement"
      )
 if [ $? -eq 1 ]
      then
