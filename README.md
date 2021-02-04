@@ -7,12 +7,12 @@ Implementation of a Database Management System using Bash Script
 </p>
 
 
-### Main Features 
+# Main Features 
 The Program has both CLI & GUI Interfaces
 * CLI With SQL Statements
 * Simple GUI using Zenity
 
-### CLI Main Menu
+# CLI Main Menu
 
 From the Main menu you can do the following :
 * Create Database
@@ -21,7 +21,7 @@ From the Main menu you can do the following :
 * Drop Database
 You must create at least one Database to Connect.
 
-### Connect Database Menu
+# Connect Database Menu
 
 After Creating a Database you can do the following :
 * Create Table 
@@ -36,8 +36,8 @@ After Creating a Database you can do the following :
   <img  src="Shots/DBMenu.png">
 </p>
 
-### Key Features
-#### CREATE a table using SQL Statement 
+# Key Features
+## CREATE With SQL Statement 
 ```
 CREATE TABLE table_name (column1 int pk , column2 txt , . . )
 ```
@@ -49,7 +49,7 @@ CREATE TABLE table_name (column1 int pk , column2 txt , . . )
   <img  src="Shots/CreateMenu.png">
 </p>
 
-#### After creating tables you can INSERT into these tables using SQL statement  
+## INSERT With SQL statement  
 ```
 INSERT INTO tableName ; VALUES(value1, value2 . . . )
 ```
@@ -62,7 +62,7 @@ INSERT INTO tableName ; VALUES(value1, value2 . . . )
   <img  src="Shots/InsertMenu.png">
 </p>
 
-#### You can DELETE from tabes using SQL Statements  
+## DELETE With SQL Statements  
 ```
 DELETE FROM table_name; WHERE column[==,<,>,>=,<=]value;  
 DELETE FROM table_name; 
@@ -75,7 +75,7 @@ DELETE FROM table_name;
   <img  src="Shots/DeleteMenu.png">
 </p>
 
-#### You can UPDATE table records using SQL Statement 
+## UPDATE With SQL Statement 
 ```
 UPDATE table_name; SET column1=value1; WHERE column2=value2;
 ```
@@ -89,7 +89,7 @@ UPDATE table_name; SET column1=value1; WHERE column2=value2;
   <img  src="Shots/UpdateMenu.png">
 </p>
 
-#### You can SELECT from tables using SQL Statements 
+## SELECT With SQL Statements 
 ```
 SELECT *; FROM table_name;
 SELECT column; FROM table_name;
@@ -107,6 +107,7 @@ SELECT *; FROM table_name;
   <img  src="Shots/SelectMenu.png">
 </p>
 
+---
 
 
 
