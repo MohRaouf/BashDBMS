@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/bin/bash
 
 name=$(zenity --entry --width=500 --height=200 --ok-label="Connect" --cancel-label="Exit" \
         --title "Connect To Database" \

@@ -1,4 +1,4 @@
-#! /bin/usr
+#!/bin/bash
 cd ../..
 ls DBMS/$1 > TB
 zenity --width=800 --height=600 --ok-label="Back" \

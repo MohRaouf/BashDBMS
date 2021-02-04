@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/bin/bash
 name=$(zenity --entry --width=500 --height=200   --ok-label="Ok" --cancel-label="Exit"\
         --title "Insert Into $name Table" \
         --text "Enter the Table Name?" \
