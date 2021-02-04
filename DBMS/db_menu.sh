@@ -11,19 +11,11 @@ function db_connected() {
 
 # Form Error Message upon the Exit Code
 function update_with_check() {
-    (../../update.sh)
+    (../../update.sh "$1")
     result=$?
     if ((result == 1)); then
-        echo "Error : Invalid Table Name"
-    elif ((result == 2)); then
-        echo "Error : Invalid Column Name"
-    elif ((result == 3)); then
-        echo "Error : No Value Found"
-    elif ((result == 4)); then
-        echo "Error : Invalid Value Type"
-    elif ((result == 5)); then
-        echo "Error : PK Value Exists"
-    else echo "Updated Successfully"; fi
+        echo "Error : Check the logs"
+    elif ((result == 2)); then exit; fi
 }
 # Form Error Message upon the Exit Code
 function select_with_check() {
@@ -42,6 +34,13 @@ function delete_with_check() {
 }
 function insert_with_check() {
     (../../insert_into.sh "$1")
+    result=$?
+    if ((result == 1)); then
+        echo "Error : Check the logs"
+    elif ((result == 2)); then exit; fi
+}
+function create_with_check() {
+    (../../create_table.sh "$1")
     result=$?
     if ((result == 1)); then
         echo "Error : Check the logs"
@@ -68,13 +67,13 @@ while true; do
     echo -n "$(tput setaf 3)Choice : "
     read selection
     case $selection in
-    1) . ../../create_table.sh ;;
+    1) create_with_check "$db_name" ;;
     2) ls ;;
     3) . ../../drop_tb.sh ;;
     4) insert_with_check "$db_name" ;;
     5) select_with_check "$db_name" ;;
     6) delete_with_check "$db_name" ;;
-    7) update_with_check ;;
+    7) update_with_check "$db_name" ;;
     8) exit ;;
     *) echo -e "\n______ Invalid Choice ______\n" ;;
     esac

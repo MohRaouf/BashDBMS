@@ -60,7 +60,7 @@ while true; do
 	echo "+---------------------------------------------------------------------+"
 	db_connected "$db_name"
 	echo "+---------------------------------------------------------------------+"
-	echo "| e.g. INSERT INTO table ; VALUES(value1, value2 . . . )              |"
+	echo "| e.g. INSERT INTO table_name ; VALUES(value1, value2 . . . )         |"
 	echo "+---------------------------------------------------------------------+"
 	echo "| 1 -  Back to DB Menu                                                |"
 	echo "| 2 -  Back to Main Menu                                              |"

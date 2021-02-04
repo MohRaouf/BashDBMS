@@ -3,7 +3,7 @@
 function db_connected() {
     db_name=$1
     typeset -i filler_length
-    filler_length=(54-${#db_name})
+    filler_length=(59-${#db_name})
     echo -n "| $(tput setaf 3)<$1 "
     for ((counter = 0; counter < filler_length; counter++)); do echo -n "-"; done
     echo " Connected>$(tput setaf 2) |"
@@ -54,19 +54,19 @@ clear
 db_name=$1
 while true; do
     tput setaf 2 #change font color to Green
-    echo "+---------------------------------------------------------------------+"
+    echo "+--------------------------------------------------------------------------+"
     db_connected "$db_name"
-    echo "+---------------------------------------------------------------------+"
-    echo "| e.g. SELECT *; FROM table;                                          |"
-    echo "|      SELECT column; FROM table;                                     |"
-    echo "|      SELECT column ; FROM table ; WHERE column[==,<,>,>=,<=]value ; |"
-    echo "|      SELECT * ; FROM table ; WHERE column[==,<,>,>=,<=]value ;      |"
-    echo "|      SELECT column; FROM table;                                     |"
-    echo "|      SELECT *; FROM table;                                          |"
-    echo "+---------------------------------------------------------------------+"
-    echo "| 1 -  Back to DB Menu                                                |"
-    echo "| 2 -  Back to Main Menu                                              |"
-    echo "+---------------------------------------------------------------------+"
+    echo "+--------------------------------------------------------------------------+"
+    echo "| e.g. SELECT *; FROM table_name;                                          |"
+    echo "|      SELECT column; FROM table_name;                                     |"
+    echo "|      SELECT column ; FROM table_name ; WHERE column[==,<,>,>=,<=]value ; |"
+    echo "|      SELECT * ; FROM table_name ; WHERE column[==,<,>,>=,<=]value ;      |"
+    echo "|      SELECT column; FROM table_name;                                     |"
+    echo "|      SELECT *; FROM table_name;                                          |"
+    echo "+--------------------------------------------------------------------------+"
+    echo "| 1 -  Back to DB Menu                                                     |"
+    echo "| 2 -  Back to Main Menu                                                   |"
+    echo "+--------------------------------------------------------------------------+"
     tput setaf 4 #change font color to blue
     read -p "$(tput setaf 3)Enter SQL Statement : " entry
     case $entry in
