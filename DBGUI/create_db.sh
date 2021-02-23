@@ -2,7 +2,7 @@
 createDb=$(zenity --entry --width=500 --height=200   --ok-label="Create" --cancel-label="Exit"\
         --title "created New Database" \
         --text "Enter the Database name?" \
-         --entry-text "NewProfile" \
+         --entry-text "NewDatabase" \
 )
 status=$?
 if [ $status -eq 1 ]

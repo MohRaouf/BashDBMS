@@ -1,11 +1,11 @@
-#! bin/bash
+#!/bin/bash
 Welcom=$(zenity --list --width=1000 --height=500 --radiolist --ok-label="Go" --cancel-label="Exit" \
      --title 'Welcome to our Bash DBMS Engin Written By: AMAAL & RAOUF'  \
      --text 'Select option For Using DB Engine:' \
      --column='options' \
      --column="Database Engine" \
-     "_" "By Using GUI" \
-     "_" "By Using SQL Statement"
+     "TRUE" "By Using GUI" \
+     "FALSE" "By Using SQL Statement"
      )
 if [ $? -eq 1 ]
      then

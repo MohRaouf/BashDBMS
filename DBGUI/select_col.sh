@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/bin/bash
 
 if [[ $# -eq 0 || $# -eq 1 ]]
 then echo "Enter Both Table Name And Option"
