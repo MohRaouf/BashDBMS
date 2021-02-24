@@ -40,6 +40,7 @@ function delete_with_check {
 		# Delete the records
         awk -v were_value="$where_value" -i inplace -F'|' '{if(!($'$where_column_field'  '$where_operator' were_value)){print $0}}' "$table_name" 
     fi
+    echo "Deleted Successfully"
 }
 
 clear

@@ -46,9 +46,9 @@ function insert_with_check() {
 			value_exist=$(awk -v new_value="$value" -F'|' 'BEGIN{found=0} {if(NR!=1){if($"'$i'"==new_value)found=1}} END{print found}' "$table_name")
 			if ((value_exist == 1)); then echo "Error : Primary Key Exist"; return; fi
 		fi
-		record=$(echo "$record" | awk -F'|' '{OFS=FS}{$"'$i'"="'$value'"; print}')
+		record=$(echo "$record" | awk -v value="$value" -F'|' '{OFS=FS}{$"'$i'"=value; print}')
 	done
-	#append the Record
+	#append the Record1
 	echo "$record" >>"$table_name"
 	echo "Inserted Successfully"
 }

@@ -9,13 +9,15 @@ function db_connected() {
     echo " Connected>$(tput setaf 2) |"
 }
 function create_with_check() {
-    #remove SQL specific words
+    if ! [[ "$entry" =~ (^"create"|"CREATE"%) ]]; then echo "Invalid SQL Statement"; return; fi;  
+    
+     #remove SQL specific words 
     sql_line=$(echo "$entry" | sed -e 's/CREATE//g' -e 's/TABLE//g' | sed -e 's/create//g' -e 's/table//g')
 
     #get table and check its existance
     table_name=$(echo "$sql_line" | awk -F'(' '{gsub(/^[ \t]+|[ \t]+$/, "",$1);print $1}')
     if [[ -f "$table_name" ]]; then
-        echo "Error : Tabe Name Exists"
+        echo "Error : Tabel Name Exists"
         return
     fi
 
@@ -54,7 +56,7 @@ function create_with_check() {
             table_fields="$column_name|$dataType|$primary_key"
         else table_fields="$column_name|$dataType"
         fi
-        echo "$table_fields" >>".$table_name"
+        echo "$table_fields" >>".$table_name" 2>>../../error.log || echo "Failed"
     done
     echo "$table_headers" >>"$table_name"
     echo "Created Successfully"
