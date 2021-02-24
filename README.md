@@ -19,7 +19,7 @@ From the Main menu you can do the following :
 * List Datebases
 * Connect Database
 * Drop Database  
-You must create at least one Database to Connect.
+#### You must create at least one Database to Connect.
 
 # Connect Database Menu
 
